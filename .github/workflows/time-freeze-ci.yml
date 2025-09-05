@@ -34,25 +34,40 @@ jobs:
             echo "No package.json, skipping npm install"
           fi
 
-      # 5️⃣ ASCII Splash Banner
-      - name: ASCII Splash
-        run: |
-          echo -e "\033[1;35m"
-          echo "████████╗██╗ ╗███╗   ███╗███████╗"
-          echo "╚══██╔══╝██║ ╗████╗ ████║██╔════╝"
-          echo "   ██║   ██║ ║██╔████╔██║█████╗  "
-          echo "   ██║   ██║ ║██║╚██╔╝██║██╔══╝  "
-          echo "   ██║   ██║ ╝██║ ╚═╝ ██║███████╗"
-          echo "   ╚═╝   ╚═╝ ╚═╝     ╚═╝╚══════╝"
-          echo -e "\033[0m"
-          echo -e "\033[1;36m"
-          echo "███████╗ ██████╗    ███████╗   ███████╗   █████████╗   ███████╗"
-          echo "██╔════╝ ██╔══ ██  ╗██╔════╝   ██╔════╝        ╚██╗    ██╔════╝"
-          echo "█████╗   ██████╔   ╝█████╗     █████╗         ██╔╝     █████╗  "
-          echo "██╔══╝   ██╔═ ██╔   ██ ══╝     ██╔══╝       ██╔╝       ██╔══╝  "
-          echo "██║      ██║   ██   ███████╗   ███████╗   ██████████╝  ███████╗"
-          echo "╚═╝      ╚═╝    ╚═   ╚══════╝   ╚══════╝   ╚════════╝   ╚══════╝"
-          echo -e "\033[0m"
+    # 5️⃣ ASCII Splash Banner (Breathing Ice-Blue)
+- name: ASCII Splash (Glowing/Breathing)
+  run: |
+    #!/bin/bash
+    ASCII=(
+"████████╗██╗ ╗███╗   ███╗███████╗"
+"╚══██╔══╝██║ ╗████╗ ████║██╔════╝"
+"   ██║   ██║ ║██╔████╔██║█████╗  "
+"   ██║   ██║ ║██║╚██╔╝██║██╔══╝  "
+"   ██║   ██║ ╝██║ ╚═╝ ██║███████╗"
+"   ╚═╝   ╚═╝ ╚═╝     ╚═╝╚══════╝"
+"███████╗ ██████╗    ███████╗   ███████╗   █████████╗   ███████╗"
+"██╔════╝ ██╔══ ██  ╗██╔════╝   ██╔════╝        ╚██╗    ██╔════╝"
+"█████╗   ██████╔   ╝█████╗     █████╗         ██╔╝     █████╗  "
+"██╔══╝   ██╔═ ██╔   ██ ══╝     ██╔══╝       ██╔╝       ██╔══╝  "
+"██║      ██║   ██   ███████╗   ███████╗   ██████████╝  ███████╗"
+"╚═╝      ╚═╝    ╚═   ╚══════╝   ╚══════╝   ╚════════╝   ╚══════╝"
+    )
+
+    while [ $((SECONDS%6)) -lt 3 ]; do
+      # Bright cyan
+      for line in "${ASCII[@]}"; do
+        echo -e "\033[1;96m$line\033[0m"
+      done
+      sleep 0.4
+      clear
+      # Dim cyan
+      for line in "${ASCII[@]}"; do
+        echo -e "\033[0;96m$line\033[0m"
+      done
+      sleep 0.4
+      clear
+    done
+
 
       # 6️⃣ Python Dashboard Simulation: Habit Tracker + Calendar
       - name: Python Dashboard
@@ -88,10 +103,7 @@ jobs:
         run: |
           npm run build || echo "Skipping build, no scripts defined"
 
-      # 8️⃣ Confirm CI/CD ran
-      - name: Confirm
-          echo -e "\033[1;32mAll systems frozen and alive — time-freeze-ci.yml complete! ❄️\033[0m"
 
 
-        run: |
-          npm run build || echo "Skipping build, no scripts defined
+
+       
