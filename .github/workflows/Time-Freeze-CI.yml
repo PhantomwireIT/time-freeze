@@ -34,7 +34,7 @@ jobs:
             echo "No package.json, skipping npm install"
           fi
 
-- name: ASCII Splash (Glowing/Breathing)
+
   run: |
     ASCII=(
 "████████╗██╗ ╗███╗   ███╗███████╗"
