@@ -90,7 +90,7 @@ jobs:
 
       # 8️⃣ Confirm CI/CD ran
       - name: Confirm
-        run: echo -e "\033[1;32mAll systems frozen and alive — Time-Freeze CI complete! ❄️\033[0m"
+          echo -e "\033[1;32mAll systems frozen and alive — time-freeze-ci.yml complete! ❄️\033[0m"
 
 
         run: |
