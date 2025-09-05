@@ -35,6 +35,7 @@ jobs:
           fi
 
 
+- name: ASCII Splash (Glowing/Breathing)
   run: |
     ASCII=(
 "████████╗██╗ ╗███╗   ███╗███████╗"
@@ -63,6 +64,7 @@ jobs:
       sleep 0.4
       clear
     done
+
 
 
       # 6️⃣ Python Dashboard Simulation: Habit Tracker + Calendar
