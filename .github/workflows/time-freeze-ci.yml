@@ -98,10 +98,7 @@ jobs:
           print("\033[1;32mCI/CD LIVE — Time-Freeze dashboard fully alive in logs! 🔥\033[0m")
           EOF
 
-      # 7️⃣ Optional Node front-end build step
-      - name: Node Build (optional)
-        run: |
-          npm run build || echo "Skipping build, no scripts defined"
+
 
 
 
