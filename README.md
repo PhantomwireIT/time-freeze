@@ -10,7 +10,7 @@
 - **Local Storage**: Your progress is saved automatically and persists between sessions.
 
 
-![Time-Freeze CI](https://github.com/PhantomwireIT/time-freeze/actions/workflows/time-freeze-ci.yml/badge.svg)
+![Time-Freeze CI](https://github.com/PhantomwireIT/time-freeze/actions/workflows/main.yml/badge.svg)
 
 
 
