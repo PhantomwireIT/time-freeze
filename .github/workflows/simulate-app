@@ -25,7 +25,7 @@ jobs:
           echo "Ready to simulate the app-state!"
 
       # 4️⃣ ASCII Banner
-      - name: ASCII App Banner
+      - name: ASCII App Banners
         run: |
           echo -e "\033[1;35m"
           echo "████████╗██╗         ███╗   ███╗███████╗"
