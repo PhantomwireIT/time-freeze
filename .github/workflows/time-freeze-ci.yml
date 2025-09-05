@@ -29,8 +29,9 @@ jobs:
             npm install
           else
             echo "No package.json, skipping npm install"
+          fi
 
-      # 5️⃣ Show Gold Coast ASCII Splash Banner
+      # 5️⃣ Show ASCII Splash Banner (purple + cyan)
       - name: ASCII Splash
         run: |
           echo -e "\033[1;35m"
@@ -40,9 +41,16 @@ jobs:
           echo "   ██║   ██║ ║██║╚██╔╝██║██╔══╝  "
           echo "   ██║   ██║ ╝██║ ╚═╝ ██║███████╗"
           echo "   ╚═╝   ╚═╝ ╚═╝     ╚═╝╚══════╝"
-          echo -e "\033[1;33m🏖️ FROM GOLD COAST, PURE ENERGY 🏖️\033[0m"
+          echo -e "\033[1;36m"
+          echo "███████╗ ██████╗    ███████╗   ███████╗   █████████╗   ███████╗"
+          echo "██╔════╝ ██╔══ ██  ╗██╔════╝   ██╔════╝        ╚██╗    ██╔════╝"
+          echo "█████╗   ██████╔   ╝█████╗     █████╗         ██╔╝     █████╗  "
+          echo "██╔══╝   ██╔═ ██╔   ██ ══╝     ██╔══╝       ██╔╝       ██╔══╝  "
+          echo "██║      ██║   ██   ███████╗   ███████╗   ██████████╝  ███████╗"
+          echo "╚═╝      ╚═╝    ╚═   ╚══════╝   ╚══════╝   ╚════════╝   ╚══════╝"
+          echo -e "\033[0m"
 
-      # 6️⃣ Python Dashboard: Habit Tracker + Weekly Calendar
+      # 6️⃣ Python Simulation: Habit Tracker + Calendar
       - name: Python Dashboard
         run: |
           python3 - <<'EOF'
@@ -74,10 +82,6 @@ jobs:
           print("\033[1;32mCI/CD LIVE — Time-Freeze dashboard fully alive in logs! 🔥\033[0m")
           EOF
 
-      # 7️⃣ Optional Node Build Step
+      # 7️⃣ Optional Node front-end build step
       - name: Node Build (optional)
         run: npm run build || echo "Skipping build, no scripts defined"
-
-      # 8️⃣ Confirm workflow ran
-      - name: Confirm
-        run: echo -e "\033[1;32mWORKFLOW COMPLETE — GOLD COAST ENERGY LIVE 🔥🔥🔥\033[0m"
