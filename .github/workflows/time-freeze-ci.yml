@@ -1,4 +1,4 @@
-
+name: Time-Freeze CI
 on:
   push:
     branches: [main]
@@ -45,7 +45,6 @@ jobs:
           echo "   ██║   ██║ ╝██║ ╚═╝ ██║███████╗"
           echo "   ╚═╝   ╚═╝ ╚═╝     ╚═╝╚══════╝"
           echo -e "\033[0m"
-
           echo -e "\033[1;36m"
           echo "███████╗ ██████╗    ███████╗   ███████╗   █████████╗   ███████╗"
           echo "██╔════╝ ██╔══ ██  ╗██╔════╝   ██╔════╝        ╚██╗    ██╔════╝"
@@ -60,7 +59,6 @@ jobs:
         run: |
           python3 - <<'EOF'
           import random, datetime
-
           print("\033[1;34m==== Habit Tracker Dashboard ====\033[0m")
           habits = {"Code Daily": random.randint(0,100),
                     "Exercise": random.randint(0,100),
@@ -71,30 +69,29 @@ jobs:
               bars = "#" * (progress//10)
               empty = "-" * (10 - len(bars))
               print(f"{habit:<12} [{bars}\033[0m{empty}] {progress:3d}%")
-
           print("\n\033[1;36mInsights:\033[0m")
           print("- Dominate your day! ❄️")
           print("- Balance is key ⚡")
           print("- Commit often, level up 🏆")
           print("- Stay frosty! 🧊\n")
-
           print("\033[1;35m==== Weekly Calendar ====\033[0m")
           DAYS = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
-          TODAY = datetime.datetime.today().weekday()  # 0=Mon
+          TODAY = datetime.datetime.today().weekday()
           CAL = ["✓" if i<TODAY else ("→" if i==TODAY else "✗") for i in range(7)]
           print(f"[{' '.join(DAYS)}]")
           print(f"[{' '.join(CAL)}]")
-
           print("\033[1;32mCI/CD LIVE — Time-Freeze dashboard fully alive in logs! 🔥\033[0m")
           EOF
 
       # 7️⃣ Optional Node front-end build step
       - name: Node Build (optional)
-        run: npm run build || echo "Skipping build, no scripts defined"
+        run: |
+          npm run build || echo "Skipping build, no scripts defined"
 
       # 8️⃣ Confirm CI/CD ran
       - name: Confirm
         run: echo -e "\033[1;32mAll systems frozen and alive — Time-Freeze CI complete! ❄️\033[0m"
+
 
         run: |
           npm run build || echo "Skipping build, no scripts defined
