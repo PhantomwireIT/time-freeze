@@ -14,3 +14,8 @@ jobs:
       - run: node -v
       - run: npm -v
       - run: echo "CI/CD is working for time-freeze!"
+
+- run: npm install
+- run: npm run lint
+- run: npm test
+- run: npm run build
