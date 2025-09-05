@@ -1,4 +1,4 @@
-name: Time-Freeze Python + Node CI
+
 on:
   push:
     branches: [main]
