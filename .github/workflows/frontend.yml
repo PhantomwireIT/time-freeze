@@ -19,10 +19,6 @@ jobs:
         with:
           node-version: '20'
 
-      //# 3️⃣ Install dependencies
-      - //name: Install dependencies
-        //run: npm install
-
       # 4️⃣ Lint code
       - name: Lint code
         run: npm run lint || echo "Skipping lint (not defined)"
