@@ -7,7 +7,12 @@
 - **Progress Bar**: Visualize your completion percentage.  
 - **Insights**: Daily stats and streaks to motivate consistent productivity.  
 - **Calendar**: Interactive calendar highlighting days with completed habits.  
-- **Local Storage**: Your progress is saved automatically and persists between sessions.  
+- **Local Storage**: Your progress is saved automatically and persists between sessions.
+
+
+![Time-Freeze CI](https://github.com/PhantomwireIT/time-freeze/actions/workflows/time-freeze-ci.yml/badge.svg)
+
+
 
 ## Installation
 1. Clone the repository:
