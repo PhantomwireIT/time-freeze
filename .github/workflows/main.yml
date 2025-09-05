@@ -1,0 +1,112 @@
+name: main
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# README badge
+# ![Time-Freeze Rust CI](https://github.com/PhantomwireIT/time-freeze/actions/workflows/time-freeze-rust-ci.yml/badge.svg)
+
+jobs:
+  live-dashboard:
+    runs-on: ubuntu-latest
+    steps:
+      # 1️⃣ Checkout repo
+      - uses: actions/checkout@v3
+
+      # 2️⃣ Set up Rust
+      - uses: actions/setup-rust@v1
+        with:
+          rust-version: stable
+
+      # 3️⃣ Rust ASCII Splash (Breathing Ice-Blue)
+      - name: Rust ASCII Splash
+        run: |
+          cat << 'EOF' > splash.rs
+          use std::{thread, time::Duration, io::{stdout, Write}};
+
+          fn main() {
+              let ascii = [
+"████████╗██╗ ███╗   ███╗███████╗",
+"╚══██╔══╝██║ ████╗ ████║██╔════╝",
+"   ██║   ██║ ██╔████╔██║█████╗  ",
+"   ██║   ██║ ██║╚██╔╝██║██╔══╝  ",
+"   ██║   ██║ ╝██║ ╚═╝ ██║███████╗",
+"   ╚═╝   ╚═╝ ╚═╝     ╚═╝╚══════╝",
+"███████╗ ██████╗    ███████╗   ███████╗   █████████╗   ███████╗",
+"██╔════╝ ██╔══ ██  ╗██╔════╝   ██╔════╝        ╚██╗    ██╔════╝",
+"█████╗   ██████╔   ╝█████╗     █████╗         ██╔╝     █████╗  ",
+"██╔══╝   ██╔═ ██╔   ██ ══╝     ██╔══╝       ██╔╝       ██╔══╝  ",
+"██║      ██║   ██   ███████╗   ███████╗   ██████████╝  ███████╗",
+"╚═╝      ╚═╝    ╚═   ╚══════╝   ╚══════╝   ╚════════╝   ╚══════╝"
+              ];
+
+              for _ in 0..3 {
+                  for &line in &ascii {
+                      println!("\x1b[1;96m{}\x1b[0m", line); // bright cyan
+                  }
+                  stdout().flush().unwrap();
+                  thread::sleep(Duration::from_millis(400));
+                  print!("\x1b[2J"); // clear screen
+                  for &line in &ascii {
+                      println!("\x1b[0;96m{}\x1b[0m", line); // dim cyan
+                  }
+                  stdout().flush().unwrap();
+                  thread::sleep(Duration::from_millis(400));
+                  print!("\x1b[2J");
+              }
+          }
+          EOF
+          rustc splash.rs && ./splash
+
+      # 4️⃣ Rust Habit Tracker Dashboard
+      - name: Rust Habit Dashboard
+        run: |
+          cat << 'EOF' > dashboard.rs
+          use rand::Rng;
+          use chrono::prelude::*;
+
+          fn main() {
+              let mut rng = rand::thread_rng();
+              let habits = [
+                  ("Code Daily", rng.gen_range(0..=100)),
+                  ("Exercise", rng.gen_range(0..=100)),
+                  ("Read", rng.gen_range(0..=100)),
+                  ("Meditate", rng.gen_range(0..=100)),
+                  ("Sleep Well", rng.gen_range(0..=100)),
+              ];
+
+              println!("\x1b[1;34m==== Habit Tracker Dashboard ====\x1b[0m");
+              for &(name, prog) in &habits {
+                  let bars = "#".repeat(prog / 10);
+                  let empty = "-".repeat(10 - bars.len());
+                  println!("{:<12} [{}{}] {:3}%", name, bars, empty, prog);
+              }
+
+              println!("\n\x1b[1;36mInsights:\x1b[0m");
+              println!("- Dominate your day! ❄️");
+              println!("- Balance is key ⚡");
+              println!("- Commit often, level up 🏆");
+              println!("- Stay frosty! 🧊\n");
+
+              let days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+              let today = Local::today().weekday().num_days_from_monday() as usize;
+              let mut cal = String::new();
+              for i in 0..7 {
+                  if i < today { cal += "✓ "; }
+                  else if i == today { cal += "→ "; }
+                  else { cal += "✗ "; }
+              }
+
+              println!("\x1b[1;35m==== Weekly Calendar ====\x1b[0m");
+              println!("{:?}", days);
+              println!("{}", cal);
+              println!("\x1b[1;32mCI/CD LIVE — Time-Freeze dashboard fully alive in logs! 🔥\x1b[0m");
+          }
+          EOF
+          rustc dashboard.rs && ./dashboard
+
+      # 5️⃣ Confirm CI/CD ran
+      - name: Confirm
+        run: echo -e "\033[1;32mAll systems frozen and alive — Time-Freeze Rust CI complete! ❄️\033[0m"
